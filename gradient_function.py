@@ -19,22 +19,12 @@ def gradient_function(theta, X, y):
     """
 
     grad = None
-    #######################################################################
-    # TODO:                                                               #
-    # Compute the gradient for a particular choice of theta.              #
-    # Compute the partial derivatives and set grad to the partial         #
-    # derivatives of the cost w.r.t. each parameter in theta              #
-    #                                                                     #
-    #######################################################################
+    
     theta_transp = np.transpose(theta)
     X_transp = np.transpose(X)
     pi_i = np.dot(X, theta_transp)
     sigm  = sigmoid(pi_i)
     hyp = y-sigm
     grad = np.dot(X_transp, hyp)
-    pass
-
-    #######################################################################
-    #                         END OF YOUR CODE                            #
-    #######################################################################
+    
     return grad
