@@ -17,21 +17,13 @@ def logistic_Newton(X, y, num_iter=10):
 
     Returns:
         theta: The value of the parameters after logistic regression
-
     """
 
     theta = np.zeros(X.shape[1])
     losses = []
     for i in range(num_iter):
         start = time.time()
-        #######################################################################
-        # TODO:                                                               #
-        # Perform one step of Newton's method:                                #
-        #   - Compute the Hessian                                             #
-        #   - Update theta using the gradient and the inverse of the hessian  #
-        #                                                                     #
-        # Hint: To solve for A^(-1)b consider using np.linalg.solve for speed #
-        #######################################################################
+        
         # Computing the Hessian
         theta_transp = np.transpose(theta)
         x_transp = np.transpose(X)
@@ -50,12 +42,7 @@ def logistic_Newton(X, y, num_iter=10):
         var = np.linalg.solve(inverse_, grad)
         var_transp = np.transpose(var)
         theta = theta - np.dot(grad,var_transp)
-        
-        pass
-
-        #######################################################################
-        #                         END OF YOUR CODE                            #
-        #######################################################################
+                
         exec_time = time.time()-start
         loss = cost_function(theta, X, y)
         losses.append(loss)
