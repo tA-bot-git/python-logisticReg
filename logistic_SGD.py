@@ -26,13 +26,7 @@ def logistic_SGD(X, y, num_iter=10000, alpha=0.01):
     new_loss = cost_function(theta,X,y)
     for i in range(num_iter):
         start = time.time()
-        #######################################################################
-        # TODO:                                                               #
-        # Perform one step of stochastic gradient descent:                    #
-        #   - Select a single training example at random                      #
-        #   - Update theta based on alpha and using gradient_function         #
-        #                                                                     #
-        #######################################################################
+        
         N = len(X)
         #
         theta_transp = np.transpose(theta)
@@ -49,11 +43,7 @@ def logistic_SGD(X, y, num_iter=10000, alpha=0.01):
         theta -= gradient
         #
         # return theta
-        pass
 
-        #######################################################################
-        #                         END OF YOUR CODE                            #
-        #######################################################################
         if i % 1000 == 0:
             exec_time = time.time() - start
             loss = cost_function(theta, X, y)
