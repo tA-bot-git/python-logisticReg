@@ -13,31 +13,32 @@ def gda(X, y):
 
     Returns:
         theta: The value of the parameters after logistic regression
-
     """
-
+    # Initialize Variables
     theta = None
     phi = None
     mu_0 = None
     mu_1 = None
     sigma = None
-
-    X = X[:, 1:]    # Note: We remove the bias term!
+           
+    X = X[:, 1:]    # Note: Remove the bias term!
     start = time.time()
-
-    #######################################################################
-    # TODO:                                                               #
-    # Perform GDA:                                                        #
-    #   - Compute the values for phi, mu_0, mu_1 and sigma                #
-    #                                                                     #
-    #######################################################################
-
-    #TBC
-    #pass
-
-    #######################################################################
-    #                         END OF YOUR CODE                            #
-    #######################################################################
+    
+    m,n  = X.shape       
+    phi  = np.sum(np.where(y == 1,1,0), dtype=float)/m 
+                                   
+    a = tuple(np.array(np.where(y == 0)).tolist())
+    b = tuple(np.array(np.where(y == 1)).tolist())
+    
+    mu_0 = np.sum(X[tuple(a)],axis=0, dtype = float)/len(y[a]) 
+    mu_1 = np.sum(X[tuple(b)],axis=0, dtype = float)/len(y[b])        
+            
+    var0 = np.array(X[a] - mu_0)/len(a)  
+    var1 = np.array(X[b] - mu_1)/len(b)              
+           
+    co_variances = np.concatenate((var0, var1), axis=0)/m
+         
+    sigma = np.dot(co_variances.T, co_variances)        
 
     # Compute theta from the results of GDA
     sigma_inv = np.linalg.inv(sigma)
